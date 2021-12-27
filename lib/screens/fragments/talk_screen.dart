@@ -1,3 +1,4 @@
+import 'package:astrotak/app/app_state.dart';
 import 'package:astrotak/model/astrologer_model.dart';
 import 'package:astrotak/provider/astrologer_data_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class TalkToAstrologerScreen extends StatefulWidget {
   _TalkToAstrologerScreenState createState() => _TalkToAstrologerScreenState();
 }
 
-class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
+class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
   AstrologerDataProvider astrologerDataProvider;
   @override
   Widget build(BuildContext context) {
@@ -85,15 +86,15 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                                           CrossAxisAlignment.center,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: const [
+                                      children: [
                                         Text(
-                                          "Arvind shukla",
-                                          style: TextStyle(
+                                          data.firstName + " " + data.lastName,
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          "20 years",
-                                          style: TextStyle(
+                                          data.experience.toString() + " years",
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.normal),
                                         ),
                                       ],
@@ -106,18 +107,20 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                                           CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
-                                        Icon(
+                                      children: [
+                                        const Icon(
                                           Icons.ac_unit_outlined,
                                           color: Colors.deepOrangeAccent,
                                           size: 16,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 5,
                                         ),
                                         Expanded(
-                                          child: Text(
-                                              "Demo sjfhdsjkhfk jkhsdfkjhdskl sfjhlkasjflkjsd sdfjhsdlkfj"),
+                                          child: Text(data.skills
+                                              .map((skill) => skill.name)
+                                              .toList()
+                                              .join(", ")),
                                         )
                                       ],
                                     ),
@@ -129,18 +132,21 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                                           CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
-                                        Icon(
+                                      children: [
+                                        const Icon(
                                           Icons.ac_unit_outlined,
                                           color: Colors.deepOrangeAccent,
                                           size: 16,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 5,
                                         ),
                                         Expanded(
-                                          child: Text("English, Hindi"),
-                                        )
+                                            child: Text(data.languages
+                                                .map(
+                                                    (language) => language.name)
+                                                .toList()
+                                                .join(", ")))
                                       ],
                                     ),
                                     const SizedBox(
@@ -151,19 +157,19 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                                           CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
-                                        Icon(
+                                      children: [
+                                        const Icon(
                                           Icons.ac_unit_outlined,
                                           color: Colors.deepOrangeAccent,
                                           size: 16,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 5,
                                         ),
                                         Expanded(
                                           child: Text(
-                                            "₹100/ min",
-                                            style: TextStyle(
+                                            "₹ ${data.minimumCallDurationCharges.toString()} / min",
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         )
@@ -201,7 +207,7 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                       ),
                     );
                   } else {
-                    return Center(
+                    return const Center(
                       child: Text("No Record(s)"),
                     );
                   }
@@ -209,7 +215,7 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
 
                 default:
                   {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
               }
             },
