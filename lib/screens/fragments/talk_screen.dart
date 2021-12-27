@@ -1,6 +1,8 @@
 import 'package:astrotak/app/app_state.dart';
+import 'package:astrotak/helper/progress_dialog.dart';
 import 'package:astrotak/model/astrologer_model.dart';
 import 'package:astrotak/provider/astrologer_data_provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -69,13 +71,15 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              CachedNetworkImage(
+                                imageUrl: data.images.medium.imageUrl,
+                                fit: BoxFit.cover,
                                 width: 100,
                                 height: 80,
-                                child: Image.network(
-                                  data.images.medium.imageUrl,
-                                  fit: BoxFit.cover,
-                                ),
+                                placeholder: (context, url) => ProgressDialog
+                                    .getCircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset("assets/icons/logo.png"),
                               ),
                               const SizedBox(
                                 width: 10,
