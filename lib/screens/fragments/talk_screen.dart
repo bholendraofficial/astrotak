@@ -237,4 +237,9 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
       astrologerDataProvider.getAstroDataAPI(context);
     }
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }

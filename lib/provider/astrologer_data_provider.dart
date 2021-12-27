@@ -15,6 +15,7 @@ class AstrologerDataProvider extends ChangeNotifier
   Future<List<Data>> future;
 
   getAstroDataAPI(context) {
+    future = null;
     Uri url = Uri(
       host: ApiUrl.host,
       scheme: ApiUrl.scheme,
