@@ -11,11 +11,11 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Row(
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Row(
               children: [
                 const Text(
                   "Talk to an Astrologer",
@@ -45,10 +45,10 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Expanded(
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
@@ -181,9 +181,9 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                   );
                 },
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
