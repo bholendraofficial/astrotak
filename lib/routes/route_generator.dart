@@ -1,7 +1,7 @@
 import 'package:astrotak/app/app_logger.dart';
 import 'package:astrotak/routes/routes.dart';
-import 'package:astrotak/screens/dashboard_screen.dart';
-import 'package:astrotak/screens/splash_screen.dart';
+import 'package:astrotak/screens/activity/dashboard_screen.dart';
+import 'package:astrotak/screens/activity/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {

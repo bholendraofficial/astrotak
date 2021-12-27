@@ -1,3 +1,8 @@
+import 'package:astrotak/screens/fragments/ask_question.dart';
+import 'package:astrotak/screens/fragments/chat_screen.dart';
+import 'package:astrotak/screens/fragments/home_screen.dart';
+import 'package:astrotak/screens/fragments/reports_screen.dart';
+import 'package:astrotak/screens/fragments/talk_screen.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -13,6 +18,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0.0,
+        title: Image.asset(
+          "assets/icons/logo.png",
+          height: 50,
+          width: 50,
+        ),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {},
+            icon: Image.asset(
+              "assets/icons/hamburger.png",
+              height: 24,
+              width: 24,
+            )),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Image.asset(
+                "assets/icons/profile.png",
+                height: 24,
+                width: 24,
+              ))
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             setState(() {
@@ -83,6 +114,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   style: TextStyle(fontSize: 8),
                 )),
           ]),
+      body: SafeArea(child: Builder(
+        builder: (BuildContext context) {
+          switch (selectedIndex) {
+            case 0:
+              {
+                return const HomeScreen();
+              }
+            case 1:
+              {
+                return const TalkToAstrologerScreen();
+              }
+            case 2:
+              {
+                return const AskQuestionScreen();
+              }
+            case 3:
+              {
+                return const ReportsScreen();
+              }
+            case 4:
+              {
+                return const ChatScreen();
+              }
+            default:
+              {
+                return const Center(
+                  child: Text("Coming soon!"),
+                );
+              }
+          }
+        },
+      )),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:astrotak/routes/route_generator.dart';
-import 'package:astrotak/screens/splash_screen.dart';
+import 'package:astrotak/screens/activity/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'app/application.dart';
