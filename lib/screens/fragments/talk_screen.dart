@@ -11,45 +11,45 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "Talk to an Astrologer",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const Expanded(child: SizedBox()),
-                  Image.asset(
-                    "assets/icons/search.png",
-                    height: 24,
-                    width: 24,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Image.asset(
-                    "assets/icons/filter.png",
-                    height: 24,
-                    width: 24,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Image.asset(
-                    "assets/icons/sort.png",
-                    height: 24,
-                    width: 24,
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ListView.separated(
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Text(
+                  "Talk to an Astrologer",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const Expanded(child: SizedBox()),
+                Image.asset(
+                  "assets/icons/search.png",
+                  height: 24,
+                  width: 24,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/icons/filter.png",
+                  height: 24,
+                  width: 24,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/icons/sort.png",
+                  height: 24,
+                  width: 24,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     child: Row(
@@ -180,10 +180,9 @@ class _TalkToAstrologerScreenState extends State<TalkToAstrologerScreen> {
                     color: Colors.grey,
                   );
                 },
-                physics: const NeverScrollableScrollPhysics(),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
