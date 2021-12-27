@@ -231,7 +231,7 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
     if (mounted) {
       astrologerDataProvider =
           Provider.of<AstrologerDataProvider>(context, listen: false);
-      astrologerDataProvider.getAstrologerData(context);
+      astrologerDataProvider.getAstroDataAPI(context);
     }
   }
 }

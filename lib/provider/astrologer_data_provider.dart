@@ -12,15 +12,7 @@ import 'package:flutter/foundation.dart';
 class AstrologerDataProvider extends ChangeNotifier
     implements ApiCallBackListener {
   AstrologerModel astrologerModel = AstrologerModel();
-  bool loading = true;
-
   Future<List<Data>> future;
-
-  getAstrologerData(context) async {
-    loading = true;
-    getAstroDataAPI(context);
-    notifyListeners();
-  }
 
   getAstroDataAPI(context) {
     Uri url = Uri(
@@ -46,7 +38,6 @@ class AstrologerDataProvider extends ChangeNotifier
         {
           astrologerModel = AstrologerModel.fromJson(json);
           if (astrologerModel.success) {
-            loading = false;
             future = Future.delayed(Duration.zero, () {
               return astrologerModel.data;
             });
