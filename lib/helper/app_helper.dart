@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:astrotak/app/application.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppHelper {
   static void hideKeyBoard(BuildContext context) {
@@ -12,7 +14,7 @@ class AppHelper {
     }
   }
 
-/*  static Future<bool> checkInternetConnectivity() async {
+  static Future<bool> checkInternetConnectivity() async {
     String connectionStatus;
     bool isConnected = false;
     final Connectivity _connectivity = Connectivity();
@@ -43,7 +45,7 @@ class AppHelper {
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-  }*/
+  }
 
   static void showSnackBarMessage(String message) {
     if (message != null && message.isNotEmpty) {
