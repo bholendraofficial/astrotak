@@ -71,8 +71,11 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
                             children: [
                               SizedBox(
                                 width: 100,
-                                child:
-                                    Image.network(data.images.medium.imageUrl),
+                                height: 80,
+                                child: Image.network(
+                                  data.images.medium.imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               const SizedBox(
                                 width: 10,
