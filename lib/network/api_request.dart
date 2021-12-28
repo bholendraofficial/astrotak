@@ -109,7 +109,7 @@ class ApiRequest {
       });
     } else if (httpType == HttpMethods.POST) {
       return http
-          .post(uri, headers: headers, body: body)
+          .post(uri, headers: headers, body: jsonEncode(body))
           .then(httpResponse)
           .catchError(httpCatch)
           .timeout(connectionTimeout, onTimeout: () {
@@ -216,35 +216,6 @@ class ApiRequest {
     } catch (onError) {
       httpCatch(onError);
     }
-  }
-
-  Future uploadImage(BuildContext context,
-      ApiCallBackListener apiCallBackListener, String url, String action,
-      {Map<String, String> headers, body, encoding}) async {
-    this.apiCallBackListener = apiCallBackListener;
-    this.url = url;
-    this.body = body;
-    this.headers = headers;
-    this.encoding = encoding;
-    this.context = context;
-    this.action = action;
-    try {
-      ProgressDialog.show(context);
-    } catch (onError) {
-      debugPrint(onError.toString());
-    }
-    var uri = Uri.parse(url);
-    var request = MultipartRequest("POST", uri);
-    var multipartFile = await MultipartFile.fromPath("file", body);
-    request.files.add(multipartFile);
-
-    StreamedResponse response = await request.send();
-    response.stream.transform(utf8.decoder).listen((value) {
-      jsonResult = jsonDecoder.convert(value);
-      apiCallBackListener.apiCallBackListener(
-          action, response.statusCode, jsonResult);
-      debugPrint(value);
-    });
   }
 
   apiTimeOut() {

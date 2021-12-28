@@ -1,4 +1,5 @@
 import 'package:astrotak/provider/astrologer_data_provider.dart';
+import 'package:astrotak/provider/panchang_data_provider.dart';
 import 'package:astrotak/routes/route_generator.dart';
 import 'package:astrotak/screens/activity/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AstrologerDataProvider()),
+        ChangeNotifierProvider(create: (context) => PanchangDataProvider()),
       ],
       child: MaterialApp(
         title: 'Astro Tak',
