@@ -1,5 +1,6 @@
 import 'package:astrotak/app/app_state.dart';
 import 'package:astrotak/helper/progress_dialog.dart';
+import 'package:astrotak/model/SortModel.dart';
 import 'package:astrotak/model/astrologer_model.dart';
 import 'package:astrotak/provider/astrologer_data_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -53,11 +54,36 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
               const SizedBox(
                 width: 10,
               ),
-              Image.asset(
-                "assets/icons/sort.png",
-                height: 24,
-                width: 24,
-              )
+              PopupMenuButton<SortModel>(
+                itemBuilder: (BuildContext context) {
+                  return astrologerDataProvider.sortList
+                      .map((SortModel sortModel) {
+                    return PopupMenuItem<SortModel>(
+                      value: sortModel,
+                      child: Row(
+                        children: [
+                          IgnorePointer(
+                            child: Checkbox(
+                                value: sortModel.isSelected,
+                                onChanged: null,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100))),
+                          ),
+                          Text(sortModel.name),
+                        ],
+                      ),
+                    );
+                  }).toList();
+                },
+                onSelected: (sortModel) {
+                  astrologerDataProvider.sortData(sortModel);
+                },
+                child: Image.asset(
+                  "assets/icons/sort.png",
+                  height: 24,
+                  width: 24,
+                ),
+              ),
             ],
           ),
         ),
