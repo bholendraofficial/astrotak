@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'package:flutter/material.dart';
 
 class AppState<T extends StatefulWidget> extends State<T> {

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'package:astrotak/app/app_logger.dart';
 import 'package:astrotak/routes/routes.dart';
 import 'package:astrotak/screens/activity/dashboard_screen.dart';

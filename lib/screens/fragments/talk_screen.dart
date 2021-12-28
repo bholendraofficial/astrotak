@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'package:astrotak/app/app_state.dart';
 import 'package:astrotak/helper/progress_dialog.dart';
 import 'package:astrotak/model/sort_model.dart';

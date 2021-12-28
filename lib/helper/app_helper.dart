@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'package:astrotak/app/application.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';

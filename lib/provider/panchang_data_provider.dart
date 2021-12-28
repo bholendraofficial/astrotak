@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'dart:convert';
 
 import 'package:astrotak/helper/app_helper.dart';

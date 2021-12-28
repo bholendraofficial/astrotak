@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 class ApiUrl {
   static const String baseUrl = "https://www.astrotak.com/";
   static const String scheme = "https";

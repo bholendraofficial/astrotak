@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 class HttpMethods {
   /*Http Request Type*/
   static const String GET = "GET";

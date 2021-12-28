@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 class AstrologerModel {
   String httpStatus;
   int httpStatusCode;

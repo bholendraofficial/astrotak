@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'package:astrotak/app/app_state.dart';
 import 'package:astrotak/routes/routes.dart';
 import 'package:flutter/material.dart';

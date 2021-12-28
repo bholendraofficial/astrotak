@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 import 'package:astrotak/provider/astrologer_data_provider.dart';
 import 'package:astrotak/provider/panchang_data_provider.dart';
 import 'package:astrotak/routes/route_generator.dart';

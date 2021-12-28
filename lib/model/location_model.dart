@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 class LocationModel {
   String httpStatus;
   int httpStatusCode;

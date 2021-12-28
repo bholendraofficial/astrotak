@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Bholendra Singh
+ */
+
 class PanchangModel {
   String httpStatus;
   int httpStatusCode;
