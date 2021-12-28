@@ -46,7 +46,7 @@ class Data {
   String vedicSunrise;
   String vedicSunset;
   Tithi tithi;
-  Tithi nakshatra;
+  Nakshatra nakshatra;
   Tithi yog;
   Tithi karan;
   HinduMaah hinduMaah;
@@ -111,7 +111,7 @@ class Data {
     vedicSunset = json['vedic_sunset'];
     tithi = json['tithi'] != null ? new Tithi.fromJson(json['tithi']) : null;
     nakshatra = json['nakshatra'] != null
-        ? new Tithi.fromJson(json['nakshatra'])
+        ? new Nakshatra.fromJson(json['nakshatra'])
         : null;
     yog = json['yog'] != null ? new Tithi.fromJson(json['yog']) : null;
     karan = json['karan'] != null ? new Tithi.fromJson(json['karan']) : null;
@@ -205,15 +205,16 @@ class Data {
 }
 
 class Tithi {
-  Details details;
+  TithiDetails tithiDetails;
   EndTime endTime;
   int endTimeMs;
 
-  Tithi({this.details, this.endTime, this.endTimeMs});
+  Tithi({this.tithiDetails, this.endTime, this.endTimeMs});
 
   Tithi.fromJson(Map<String, dynamic> json) {
-    details =
-        json['details'] != null ? new Details.fromJson(json['details']) : null;
+    tithiDetails = json['details'] != null
+        ? new TithiDetails.fromJson(json['details'])
+        : null;
     endTime = json['end_time'] != null
         ? new EndTime.fromJson(json['end_time'])
         : null;
@@ -222,8 +223,8 @@ class Tithi {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.details != null) {
-      data['details'] = this.details.toJson();
+    if (this.tithiDetails != null) {
+      data['details'] = this.tithiDetails.toJson();
     }
     if (this.endTime != null) {
       data['end_time'] = this.endTime.toJson();
@@ -233,21 +234,21 @@ class Tithi {
   }
 }
 
-class Details {
+class TithiDetails {
   int tithiNumber;
   String tithiName;
   String special;
   String summary;
   String deity;
 
-  Details(
+  TithiDetails(
       {this.tithiNumber,
       this.tithiName,
       this.special,
       this.summary,
       this.deity});
 
-  Details.fromJson(Map<String, dynamic> json) {
+  TithiDetails.fromJson(Map<String, dynamic> json) {
     tithiNumber = json['tithi_number'];
     tithiName = json['tithi_name'];
     special = json['special'];
@@ -284,6 +285,43 @@ class EndTime {
     data['hour'] = this.hour;
     data['minute'] = this.minute;
     data['second'] = this.second;
+    return data;
+  }
+}
+
+class Details {
+  int nakNumber;
+  String nakName;
+  String ruler;
+  String deity;
+  String special;
+  String summary;
+
+  Details(
+      {this.nakNumber,
+      this.nakName,
+      this.ruler,
+      this.deity,
+      this.special,
+      this.summary});
+
+  Details.fromJson(Map<String, dynamic> json) {
+    nakNumber = json['nak_number'];
+    nakName = json['nak_name'];
+    ruler = json['ruler'];
+    deity = json['deity'];
+    special = json['special'];
+    summary = json['summary'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nak_number'] = this.nakNumber;
+    data['nak_name'] = this.nakName;
+    data['ruler'] = this.ruler;
+    data['deity'] = this.deity;
+    data['special'] = this.special;
+    data['summary'] = this.summary;
     return data;
   }
 }
@@ -355,6 +393,73 @@ class AbhijitMuhurta {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['start'] = this.start;
     data['end'] = this.end;
+    return data;
+  }
+}
+
+class Nakshatra {
+  NakshatraDetails nakshatraDetails;
+  EndTime endTime;
+  int endTimeMs;
+
+  Nakshatra({this.nakshatraDetails, this.endTime, this.endTimeMs});
+
+  Nakshatra.fromJson(Map<String, dynamic> json) {
+    nakshatraDetails = json['details'] != null
+        ? new NakshatraDetails.fromJson(json['details'])
+        : null;
+    endTime = json['end_time'] != null
+        ? new EndTime.fromJson(json['end_time'])
+        : null;
+    endTimeMs = json['end_time_ms'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.nakshatraDetails != null) {
+      data['details'] = this.nakshatraDetails.toJson();
+    }
+    if (this.endTime != null) {
+      data['end_time'] = this.endTime.toJson();
+    }
+    data['end_time_ms'] = this.endTimeMs;
+    return data;
+  }
+}
+
+class NakshatraDetails {
+  int nakNumber;
+  String nakName;
+  String ruler;
+  String deity;
+  String special;
+  String summary;
+
+  NakshatraDetails(
+      {this.nakNumber,
+      this.nakName,
+      this.ruler,
+      this.deity,
+      this.special,
+      this.summary});
+
+  NakshatraDetails.fromJson(Map<String, dynamic> json) {
+    nakNumber = json['nak_number'];
+    nakName = json['nak_name'];
+    ruler = json['ruler'];
+    deity = json['deity'];
+    special = json['special'];
+    summary = json['summary'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nak_number'] = this.nakNumber;
+    data['nak_name'] = this.nakName;
+    data['ruler'] = this.ruler;
+    data['deity'] = this.deity;
+    data['special'] = this.special;
+    data['summary'] = this.summary;
     return data;
   }
 }
