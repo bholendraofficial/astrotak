@@ -79,7 +79,7 @@ class ApiRequest {
             debugPrint(onError.toString());
           }
         } else {
-          // AppHelper.showSnackBarMessage("No Internet Connection.");
+          AppHelper.showSnackBarMessage("No Internet Connection.");
         }
       });
     }
@@ -158,11 +158,6 @@ class ApiRequest {
       }
       var res = response.body;
       var statusCode = response.statusCode;
-      // if (statusCode == 401) {
-      //   debugPrint("error===");
-      //   AppHelper.logOut(context);
-      //   return null;
-      // }
 
       debugPrint(
           "\n****************************API RESPONSE************************************\n");
@@ -196,11 +191,6 @@ class ApiRequest {
       }
       var res = await response.stream.bytesToString();
       var statusCode = response.statusCode;
-      // if (statusCode == 401) {
-      //   debugPrint("error===");
-      //   AppHelper.logOut(context);
-      //   return null;
-      // }
       jsonResult = jsonDecoder.convert(res);
 
       debugPrint(
@@ -243,8 +233,6 @@ class ApiRequest {
     } catch (onError) {
       debugPrint(onError.toString());
     }
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // this.headers = getApiHeader(prefs.getString(Constants.ACCESS_TOKEN));
     var uri = Uri.parse(url);
     var request = MultipartRequest("POST", uri);
     var multipartFile = await MultipartFile.fromPath("file", body);

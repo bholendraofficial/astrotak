@@ -30,10 +30,17 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const Expanded(child: SizedBox()),
-              Image.asset(
-                "assets/icons/search.png",
-                height: 24,
-                width: 24,
+              GestureDetector(
+                child: Image.asset(
+                  "assets/icons/search.png",
+                  height: 24,
+                  width: 24,
+                ),
+                onTap: () {
+                  astrologerDataProvider.showSearchBar =
+                      !astrologerDataProvider.showSearchBar;
+                  astrologerDataProvider.notifyListeners();
+                },
               ),
               const SizedBox(
                 width: 10,
@@ -54,6 +61,36 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
             ],
           ),
         ),
+        astrologerDataProvider.showSearchBar
+            ? Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.shade200),
+                child: TextFormField(
+                  onChanged: (value) {
+                    astrologerDataProvider.onSearch(value);
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.deepOrangeAccent,
+                      ),
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            astrologerDataProvider.clearSearch();
+                          },
+                          icon: const Icon(
+                            Icons.close,
+                            color: Colors.deepOrangeAccent,
+                          ))),
+                ),
+              )
+            : const SizedBox(),
+        const SizedBox(
+          height: 20,
+        ),
         Expanded(
           child: FutureBuilder(
             future: astrologerDataProvider.future,
@@ -61,7 +98,7 @@ class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
                 (BuildContext context, AsyncSnapshot<List<Data>> snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.done:
-                  if (snapshot.hasData) {
+                  if (snapshot.hasData && snapshot.data.isNotEmpty) {
                     return Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ListView.separated(

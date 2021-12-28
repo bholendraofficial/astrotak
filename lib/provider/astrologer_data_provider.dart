@@ -13,6 +13,7 @@ class AstrologerDataProvider extends ChangeNotifier
     implements ApiCallBackListener {
   AstrologerModel astrologerModel = AstrologerModel();
   Future<List<Data>> future;
+  bool showSearchBar = false;
 
   getAstroDataAPI(context) {
     future = null;
@@ -49,5 +50,27 @@ class AstrologerDataProvider extends ChangeNotifier
           break;
         }
     }
+  }
+
+  void onSearch(String value) {
+    List<Data> data = [];
+    for (var element in astrologerModel.data) {
+      if (element.firstName.toLowerCase().contains(value.toLowerCase()) ||
+          element.lastName.toLowerCase().contains(value.toLowerCase())) {
+        data.add(element);
+      }
+    }
+    future = Future.delayed(Duration.zero, () {
+      return data;
+    });
+    notifyListeners();
+  }
+
+  void clearSearch() {
+    showSearchBar = false;
+    future = Future.delayed(Duration.zero, () {
+      return astrologerModel.data;
+    });
+    notifyListeners();
   }
 }
