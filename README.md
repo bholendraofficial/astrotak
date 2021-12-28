@@ -2,8 +2,9 @@
 
 A new Flutter project.
 
-## Task Video:
+## Astrotak Task Sample Video:
 
+https://user-images.githubusercontent.com/47040352/147590258-51d985a8-358c-4873-9a86-e26b5e4b472f.mp4
 
 ## Download APK Link:
 https://drive.google.com/file/d/1AWbi3UgseHthVPykWgmOnd6zLsg6c4Ya/view?usp=sharing
