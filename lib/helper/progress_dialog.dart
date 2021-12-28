@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /* Created by Bholendra Singh  */
@@ -51,7 +50,7 @@ class ProgressDialog {
     return Container(
       alignment: Alignment.center,
       child: SizedBox(
-        child: CircularProgressIndicator(),
+        child: const CircularProgressIndicator(),
         height: height,
         width: width,
       ),

@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:astrotak/app/application.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,21 +23,29 @@ class AppHelper {
       connectionStatus = (await _connectivity.checkConnectivity()).toString();
       if (await _connectivity.checkConnectivity() ==
           ConnectivityResult.mobile) {
-        print("===internetconnected==Mobile" + connectionStatus);
+        if (kDebugMode) {
+          print("===internetconnected==Mobile" + connectionStatus);
+        }
         isConnected = true;
         // I am connected to a mobile network.
       } else if (await _connectivity.checkConnectivity() ==
           ConnectivityResult.wifi) {
         isConnected = true;
-        print("===internetconnected==wifi" + connectionStatus);
+        if (kDebugMode) {
+          print("===internetconnected==wifi" + connectionStatus);
+        }
         // I am connected to a wifi network.
       } else if (await _connectivity.checkConnectivity() ==
           ConnectivityResult.none) {
         isConnected = false;
-        print("===internetconnected==not" + connectionStatus);
+        if (kDebugMode) {
+          print("===internetconnected==not" + connectionStatus);
+        }
       }
     } on PlatformException catch (e) {
-      print("===internet==not connected" + e.toString());
+      if (kDebugMode) {
+        print("===internet==not connected" + e.toString());
+      }
       connectionStatus = 'Failed to get connectivity.';
     }
     return isConnected;

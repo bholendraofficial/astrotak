@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
+
 import 'package:astrotak/helper/app_helper.dart';
-import 'package:astrotak/model/SortModel.dart';
 import 'package:astrotak/model/location_model.dart';
 import 'package:astrotak/model/panchang_model.dart';
 import 'package:astrotak/network/api_action.dart';
@@ -10,8 +8,8 @@ import 'package:astrotak/network/api_callback_listener.dart';
 import 'package:astrotak/network/api_request.dart';
 import 'package:astrotak/network/api_url.dart';
 import 'package:astrotak/network/http_methods.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 

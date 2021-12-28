@@ -29,12 +29,12 @@ class LocationModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['httpStatus'] = this.httpStatus;
-    data['httpStatusCode'] = this.httpStatusCode;
-    data['success'] = this.success;
-    data['message'] = this.message;
-    data['apiName'] = this.apiName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['httpStatus'] = httpStatus;
+    data['httpStatusCode'] = httpStatusCode;
+    data['success'] = success;
+    data['message'] = message;
+    data['apiName'] = apiName;
     if (this.data != null) {
       data['data'] = this.data.map((v) => v.toJson()).toList();
     }
@@ -54,9 +54,9 @@ class LocationData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['placeName'] = this.placeName;
-    data['placeId'] = this.placeId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['placeName'] = placeName;
+    data['placeId'] = placeId;
     return data;
   }
 }

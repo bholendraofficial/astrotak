@@ -1,7 +1,5 @@
-import 'dart:io';
-
 import 'package:astrotak/helper/app_helper.dart';
-import 'package:astrotak/model/SortModel.dart';
+import 'package:astrotak/model/sort_model.dart';
 import 'package:astrotak/model/astrologer_model.dart';
 import 'package:astrotak/network/api_action.dart';
 import 'package:astrotak/network/api_callback_listener.dart';
@@ -99,13 +97,13 @@ class AstrologerDataProvider extends ChangeNotifier
   }
 
   void sortData(SortModel sortModel) {
-    sortList.forEach((element) {
+    for (var element in sortList) {
       if (element.id == sortModel.id) {
         element.isSelected = !element.isSelected;
       } else {
         element.isSelected = false;
       }
-    });
+    }
 
     if (sortModel.isSelected) {
       List<Data> data = astrologerModel.data.toList();

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class RouteGenerator {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
-    final args = settings.name;
     switch (settings.name) {
       case Routes.splashScreen:
         {

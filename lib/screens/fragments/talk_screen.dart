@@ -1,6 +1,6 @@
 import 'package:astrotak/app/app_state.dart';
 import 'package:astrotak/helper/progress_dialog.dart';
-import 'package:astrotak/model/SortModel.dart';
+import 'package:astrotak/model/sort_model.dart';
 import 'package:astrotak/model/astrologer_model.dart';
 import 'package:astrotak/provider/astrologer_data_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -16,6 +16,7 @@ class TalkToAstrologerScreen extends StatefulWidget {
 
 class _TalkToAstrologerScreenState extends AppState<TalkToAstrologerScreen> {
   AstrologerDataProvider astrologerDataProvider;
+
   @override
   Widget build(BuildContext context) {
     astrologerDataProvider = Provider.of<AstrologerDataProvider>(context);

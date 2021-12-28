@@ -100,7 +100,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 title: const Text(
                   "Reports",
-                  style: const TextStyle(fontSize: 8),
+                  style: TextStyle(fontSize: 8),
                 )),
             BottomNavigationBarItem(
                 icon: Image.asset(

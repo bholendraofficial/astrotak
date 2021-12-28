@@ -20,16 +20,16 @@ class PanchangModel {
     success = json['success'];
     message = json['message'];
     apiName = json['apiName'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['httpStatus'] = this.httpStatus;
-    data['httpStatusCode'] = this.httpStatusCode;
-    data['success'] = this.success;
-    data['message'] = this.message;
-    data['apiName'] = this.apiName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['httpStatus'] = httpStatus;
+    data['httpStatusCode'] = httpStatusCode;
+    data['success'] = success;
+    data['message'] = message;
+    data['apiName'] = apiName;
     if (this.data != null) {
       data['data'] = this.data.toJson();
     }
@@ -109,14 +109,14 @@ class Data {
     moonset = json['moonset'];
     vedicSunrise = json['vedic_sunrise'];
     vedicSunset = json['vedic_sunset'];
-    tithi = json['tithi'] != null ? new Tithi.fromJson(json['tithi']) : null;
+    tithi = json['tithi'] != null ? Tithi.fromJson(json['tithi']) : null;
     nakshatra = json['nakshatra'] != null
-        ? new Nakshatra.fromJson(json['nakshatra'])
+        ? Nakshatra.fromJson(json['nakshatra'])
         : null;
-    yog = json['yog'] != null ? new Tithi.fromJson(json['yog']) : null;
-    karan = json['karan'] != null ? new Tithi.fromJson(json['karan']) : null;
+    yog = json['yog'] != null ? Tithi.fromJson(json['yog']) : null;
+    karan = json['karan'] != null ? Tithi.fromJson(json['karan']) : null;
     hinduMaah = json['hindu_maah'] != null
-        ? new HinduMaah.fromJson(json['hindu_maah'])
+        ? HinduMaah.fromJson(json['hindu_maah'])
         : null;
     paksha = json['paksha'];
     ritu = json['ritu'];
@@ -130,75 +130,74 @@ class Data {
     shakaSamvatName = json['shaka_samvat_name'];
     dishaShool = json['disha_shool'];
     dishaShoolRemedies = json['disha_shool_remedies'];
-    nakShool = json['nak_shool'] != null
-        ? new NakShool.fromJson(json['nak_shool'])
-        : null;
+    nakShool =
+        json['nak_shool'] != null ? NakShool.fromJson(json['nak_shool']) : null;
     moonNivas = json['moon_nivas'];
     abhijitMuhurta = json['abhijit_muhurta'] != null
-        ? new AbhijitMuhurta.fromJson(json['abhijit_muhurta'])
+        ? AbhijitMuhurta.fromJson(json['abhijit_muhurta'])
         : null;
     rahukaal = json['rahukaal'] != null
-        ? new AbhijitMuhurta.fromJson(json['rahukaal'])
+        ? AbhijitMuhurta.fromJson(json['rahukaal'])
         : null;
     guliKaal = json['guliKaal'] != null
-        ? new AbhijitMuhurta.fromJson(json['guliKaal'])
+        ? AbhijitMuhurta.fromJson(json['guliKaal'])
         : null;
     yamghantKaal = json['yamghant_kaal'] != null
-        ? new AbhijitMuhurta.fromJson(json['yamghant_kaal'])
+        ? AbhijitMuhurta.fromJson(json['yamghant_kaal'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['day'] = this.day;
-    data['sunrise'] = this.sunrise;
-    data['sunset'] = this.sunset;
-    data['moonrise'] = this.moonrise;
-    data['moonset'] = this.moonset;
-    data['vedic_sunrise'] = this.vedicSunrise;
-    data['vedic_sunset'] = this.vedicSunset;
-    if (this.tithi != null) {
-      data['tithi'] = this.tithi.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['day'] = day;
+    data['sunrise'] = sunrise;
+    data['sunset'] = sunset;
+    data['moonrise'] = moonrise;
+    data['moonset'] = moonset;
+    data['vedic_sunrise'] = vedicSunrise;
+    data['vedic_sunset'] = vedicSunset;
+    if (tithi != null) {
+      data['tithi'] = tithi.toJson();
     }
-    if (this.nakshatra != null) {
-      data['nakshatra'] = this.nakshatra.toJson();
+    if (nakshatra != null) {
+      data['nakshatra'] = nakshatra.toJson();
     }
-    if (this.yog != null) {
-      data['yog'] = this.yog.toJson();
+    if (yog != null) {
+      data['yog'] = yog.toJson();
     }
-    if (this.karan != null) {
-      data['karan'] = this.karan.toJson();
+    if (karan != null) {
+      data['karan'] = karan.toJson();
     }
-    if (this.hinduMaah != null) {
-      data['hindu_maah'] = this.hinduMaah.toJson();
+    if (hinduMaah != null) {
+      data['hindu_maah'] = hinduMaah.toJson();
     }
-    data['paksha'] = this.paksha;
-    data['ritu'] = this.ritu;
-    data['sun_sign'] = this.sunSign;
-    data['moon_sign'] = this.moonSign;
-    data['ayana'] = this.ayana;
-    data['panchang_yog'] = this.panchangYog;
-    data['vikram_samvat'] = this.vikramSamvat;
-    data['shaka_samvat'] = this.shakaSamvat;
-    data['vkram_samvat_name'] = this.vkramSamvatName;
-    data['shaka_samvat_name'] = this.shakaSamvatName;
-    data['disha_shool'] = this.dishaShool;
-    data['disha_shool_remedies'] = this.dishaShoolRemedies;
-    if (this.nakShool != null) {
-      data['nak_shool'] = this.nakShool.toJson();
+    data['paksha'] = paksha;
+    data['ritu'] = ritu;
+    data['sun_sign'] = sunSign;
+    data['moon_sign'] = moonSign;
+    data['ayana'] = ayana;
+    data['panchang_yog'] = panchangYog;
+    data['vikram_samvat'] = vikramSamvat;
+    data['shaka_samvat'] = shakaSamvat;
+    data['vkram_samvat_name'] = vkramSamvatName;
+    data['shaka_samvat_name'] = shakaSamvatName;
+    data['disha_shool'] = dishaShool;
+    data['disha_shool_remedies'] = dishaShoolRemedies;
+    if (nakShool != null) {
+      data['nak_shool'] = nakShool.toJson();
     }
-    data['moon_nivas'] = this.moonNivas;
-    if (this.abhijitMuhurta != null) {
-      data['abhijit_muhurta'] = this.abhijitMuhurta.toJson();
+    data['moon_nivas'] = moonNivas;
+    if (abhijitMuhurta != null) {
+      data['abhijit_muhurta'] = abhijitMuhurta.toJson();
     }
-    if (this.rahukaal != null) {
-      data['rahukaal'] = this.rahukaal.toJson();
+    if (rahukaal != null) {
+      data['rahukaal'] = rahukaal.toJson();
     }
-    if (this.guliKaal != null) {
-      data['guliKaal'] = this.guliKaal.toJson();
+    if (guliKaal != null) {
+      data['guliKaal'] = guliKaal.toJson();
     }
-    if (this.yamghantKaal != null) {
-      data['yamghant_kaal'] = this.yamghantKaal.toJson();
+    if (yamghantKaal != null) {
+      data['yamghant_kaal'] = yamghantKaal.toJson();
     }
     return data;
   }
@@ -212,24 +211,22 @@ class Tithi {
   Tithi({this.tithiDetails, this.endTime, this.endTimeMs});
 
   Tithi.fromJson(Map<String, dynamic> json) {
-    tithiDetails = json['details'] != null
-        ? new TithiDetails.fromJson(json['details'])
-        : null;
-    endTime = json['end_time'] != null
-        ? new EndTime.fromJson(json['end_time'])
-        : null;
+    tithiDetails =
+        json['details'] != null ? TithiDetails.fromJson(json['details']) : null;
+    endTime =
+        json['end_time'] != null ? EndTime.fromJson(json['end_time']) : null;
     endTimeMs = json['end_time_ms'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.tithiDetails != null) {
-      data['details'] = this.tithiDetails.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (tithiDetails != null) {
+      data['details'] = tithiDetails.toJson();
     }
-    if (this.endTime != null) {
-      data['end_time'] = this.endTime.toJson();
+    if (endTime != null) {
+      data['end_time'] = endTime.toJson();
     }
-    data['end_time_ms'] = this.endTimeMs;
+    data['end_time_ms'] = endTimeMs;
     return data;
   }
 }
@@ -257,12 +254,12 @@ class TithiDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tithi_number'] = this.tithiNumber;
-    data['tithi_name'] = this.tithiName;
-    data['special'] = this.special;
-    data['summary'] = this.summary;
-    data['deity'] = this.deity;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tithi_number'] = tithiNumber;
+    data['tithi_name'] = tithiName;
+    data['special'] = special;
+    data['summary'] = summary;
+    data['deity'] = deity;
     return data;
   }
 }
@@ -281,10 +278,10 @@ class EndTime {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['hour'] = this.hour;
-    data['minute'] = this.minute;
-    data['second'] = this.second;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['hour'] = hour;
+    data['minute'] = minute;
+    data['second'] = second;
     return data;
   }
 }
@@ -315,13 +312,13 @@ class Details {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nak_number'] = this.nakNumber;
-    data['nak_name'] = this.nakName;
-    data['ruler'] = this.ruler;
-    data['deity'] = this.deity;
-    data['special'] = this.special;
-    data['summary'] = this.summary;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nak_number'] = nakNumber;
+    data['nak_name'] = nakName;
+    data['ruler'] = ruler;
+    data['deity'] = deity;
+    data['special'] = special;
+    data['summary'] = summary;
     return data;
   }
 }
@@ -349,12 +346,12 @@ class HinduMaah {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['adhik_status'] = this.adhikStatus;
-    data['purnimanta'] = this.purnimanta;
-    data['amanta'] = this.amanta;
-    data['amanta_id'] = this.amantaId;
-    data['purnimanta_id'] = this.purnimantaId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['adhik_status'] = adhikStatus;
+    data['purnimanta'] = purnimanta;
+    data['amanta'] = amanta;
+    data['amanta_id'] = amantaId;
+    data['purnimanta_id'] = purnimantaId;
     return data;
   }
 }
@@ -371,9 +368,9 @@ class NakShool {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['direction'] = this.direction;
-    data['remedies'] = this.remedies;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['direction'] = direction;
+    data['remedies'] = remedies;
     return data;
   }
 }
@@ -390,9 +387,9 @@ class AbhijitMuhurta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['start'] = this.start;
-    data['end'] = this.end;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['start'] = start;
+    data['end'] = end;
     return data;
   }
 }
@@ -406,23 +403,22 @@ class Nakshatra {
 
   Nakshatra.fromJson(Map<String, dynamic> json) {
     nakshatraDetails = json['details'] != null
-        ? new NakshatraDetails.fromJson(json['details'])
+        ? NakshatraDetails.fromJson(json['details'])
         : null;
-    endTime = json['end_time'] != null
-        ? new EndTime.fromJson(json['end_time'])
-        : null;
+    endTime =
+        json['end_time'] != null ? EndTime.fromJson(json['end_time']) : null;
     endTimeMs = json['end_time_ms'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.nakshatraDetails != null) {
-      data['details'] = this.nakshatraDetails.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (nakshatraDetails != null) {
+      data['details'] = nakshatraDetails.toJson();
     }
-    if (this.endTime != null) {
-      data['end_time'] = this.endTime.toJson();
+    if (endTime != null) {
+      data['end_time'] = endTime.toJson();
     }
-    data['end_time_ms'] = this.endTimeMs;
+    data['end_time_ms'] = endTimeMs;
     return data;
   }
 }
@@ -453,13 +449,13 @@ class NakshatraDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nak_number'] = this.nakNumber;
-    data['nak_name'] = this.nakName;
-    data['ruler'] = this.ruler;
-    data['deity'] = this.deity;
-    data['special'] = this.special;
-    data['summary'] = this.summary;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nak_number'] = nakNumber;
+    data['nak_name'] = nakName;
+    data['ruler'] = ruler;
+    data['deity'] = deity;
+    data['special'] = special;
+    data['summary'] = summary;
     return data;
   }
 }

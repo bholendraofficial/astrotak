@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends AppState<HomeScreen> {
   PanchangDataProvider panchangDataProvider;
+
   @override
   Widget build(BuildContext context) {
     panchangDataProvider = Provider.of<PanchangDataProvider>(context);
@@ -63,7 +64,7 @@ class _HomeScreenState extends AppState<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(panchangDataProvider.selectedDateString),
-                              Icon(Icons.arrow_drop_down)
+                              const Icon(Icons.arrow_drop_down)
                             ],
                           ),
                         ),
@@ -96,7 +97,7 @@ class _HomeScreenState extends AppState<HomeScreen> {
                         child: TypeAheadField(
                           textFieldConfiguration: TextFieldConfiguration(
                               autofocus: false,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   contentPadding:
                                       EdgeInsets.symmetric(horizontal: 20)),
