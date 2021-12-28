@@ -1,6 +1,9 @@
+import 'package:astrotak/app/app_state.dart';
+import 'package:astrotak/model/location_model.dart';
 import 'package:astrotak/model/panchang_model.dart';
 import 'package:astrotak/provider/panchang_data_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,7 +13,7 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends AppState<HomeScreen> {
   PanchangDataProvider panchangDataProvider;
   @override
   Widget build(BuildContext context) {
@@ -18,39 +21,39 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         body: Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Daily Panchang",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-                "India is a country known for its festival but knowing the exact dates can sometimes be difficult. To ensure you do not miss out on the critical dates we bring you the daily panchang."),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              color: Colors.deepOrangeAccent.withOpacity(0.4),
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      const SizedBox(
-                        child: Center(
-                          child: Text(
-                            "Date:",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Daily Panchang",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+              "India is a country known for its festival but knowing the exact dates can sometimes be difficult. To ensure you do not miss out on the critical dates we bring you the daily panchang."),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            color: Colors.deepOrangeAccent.withOpacity(0.4),
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const SizedBox(
+                      child: Center(
+                        child: Text(
+                          "Date:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        width: 100,
                       ),
-                      Expanded(
+                      width: 100,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
                         child: Container(
                           height: 50,
                           color: Colors.white,
@@ -59,59 +62,89 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text("17 Dec 2021"),
-                              const Icon(Icons.arrow_drop_down)
+                              Text(panchangDataProvider.selectedDateString),
+                              Icon(Icons.arrow_drop_down)
                             ],
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        child: Center(
-                          child: Text(
-                            "Location:",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        width: 100,
+                        onTap: () {
+                          panchangDataProvider.showDatePickerDialog(context);
+                        },
                       ),
-                      Expanded(
-                        child: Container(
-                          height: 50,
-                          color: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
-                            decoration:
-                                const InputDecoration(border: InputBorder.none),
-                          ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      child: Center(
+                        child: Text(
+                          "Location:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                      ),
+                      width: 100,
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white,
+                        child: TypeAheadField(
+                          textFieldConfiguration: TextFieldConfiguration(
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 20)),
+                              controller: panchangDataProvider
+                                  .locationEditingController),
+                          suggestionsCallback: (pattern) async {
+                            if (pattern.isNotEmpty && pattern.length >= 2) {
+                              return panchangDataProvider.getLocationDataAPI(
+                                  context, pattern);
+                            }
+                            return null;
+                          },
+                          onSuggestionSelected: (LocationData locationData) {
+                            panchangDataProvider.selectedLocation =
+                                locationData;
+                            panchangDataProvider.locationEditingController
+                                .text = locationData.placeName;
+                            panchangDataProvider.getPanchangDataAPI(context);
+                          },
+                          itemBuilder: (context, LocationData locationData) {
+                            return ListTile(
+                              title: Text(locationData.placeName),
+                            );
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            FutureBuilder(
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: FutureBuilder(
               future: panchangDataProvider.future,
               builder: (BuildContext context, AsyncSnapshot<Data> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.done:
-                    if (snapshot.hasData) {
+                    if (snapshot.hasData && snapshot.data != null) {
                       Data data = snapshot.data;
-                      return Container(
+                      return SingleChildScrollView(
                         child: Column(
                           children: [
                             tithiWidget(data),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             nakshtraWidget(data),
@@ -124,7 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                     break;
-
                   default:
                     {
                       return const Center(child: CircularProgressIndicator());
@@ -132,8 +164,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ));
   }
@@ -144,7 +176,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) {
       panchangDataProvider =
           Provider.of<PanchangDataProvider>(context, listen: false);
-      panchangDataProvider.getPanchangDataAPI(context);
     }
   }
 
@@ -153,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  tithiWidget(Data data) {
+  Widget tithiWidget(Data data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -250,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  nakshtraWidget(Data data) {
+  Widget nakshtraWidget(Data data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
